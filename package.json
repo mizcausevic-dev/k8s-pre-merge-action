@@ -1,0 +1,49 @@
+{
+  "name": "k8s-pre-merge-action",
+  "version": "0.1.0",
+  "description": "Composite GitHub Action that runs the lane-#3 K8s pre-merge scanner kit against a manifests directory + optional Helm chart: deprecated-API + RBAC over-scope + Pod Security Standards + Helm values-coverage. Aggregates findings into a single Markdown report, posts as PR comment, fails on configurable severity.",
+  "type": "module",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "author": "mizcausevic-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mizcausevic-dev/k8s-pre-merge-action"
+  },
+  "keywords": [
+    "github-action",
+    "actions",
+    "kubernetes",
+    "k8s",
+    "helm",
+    "security",
+    "platform-engineering",
+    "ci",
+    "pre-merge",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "demo": "tsx scripts/demo.ts"
+  },
+  "dependencies": {
+    "yaml": "^2.6.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.0",
+    "@vitest/coverage-v8": "^2.1.8",
+    "eslint": "^9.17.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^2.1.8"
+  }
+}

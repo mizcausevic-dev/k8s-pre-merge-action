@@ -1,0 +1,40 @@
+name: "K8s Pre-merge Gate"
+description: "Run deprecated-API + RBAC over-scope + Pod Security Standards + Helm values-coverage scans against a K8s manifests directory (and optional Helm chart). Post a consolidated PR comment; fail when findings exceed the configured severity threshold."
+author: "mizcausevic-dev"
+branding:
+  icon: "shield"
+  color: "blue"
+
+inputs:
+  manifests-dir:
+    description: "Directory containing Kubernetes YAML manifests to scan."
+    required: true
+  chart-dir:
+    description: "Optional Helm chart root (with templates/ and values.yaml). When set, runs the values-coverage check too."
+    required: false
+  fail-on:
+    description: "Severity threshold that fails the run: 'high' (default), 'medium', or 'none' (never fail)."
+    required: false
+    default: "high"
+  comment-on-pr:
+    description: "Post the consolidated Markdown report as a PR comment. Defaults to 'auto' (post on pull_request events only)."
+    required: false
+    default: "auto"
+  github-token:
+    description: "Token used to post the PR comment."
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  total-findings:
+    description: "Total number of findings across all four scanners."
+  high:
+    description: "Count of high-severity findings."
+  medium:
+    description: "Count of medium-severity findings."
+  low:
+    description: "Count of low-severity findings."
+
+runs:
+  using: "node20"
+  main: "dist/index.js"

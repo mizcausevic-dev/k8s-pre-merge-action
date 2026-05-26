@@ -1,0 +1,3 @@
+image:
+  repository: ghcr.io/example/api
+# Intentionally missing image.tag — triggers missing-default.
